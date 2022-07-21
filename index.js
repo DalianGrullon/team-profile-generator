@@ -20,7 +20,7 @@ function init() {
         // and prompt to ask questions
     
         // once you finish your questions, you'll probably want to send those answers to a new instance of Manager (one of the classes you'll create and require above)
-            .then((answers) => {
+        .then((answers) => {
             const manager = new Manager(
                 //send your answers here
             );
@@ -37,20 +37,20 @@ function init() {
   
         // then, based on their choice, run the function associated with adding that employee type
         .then((choice) => {
-        // conditional that runs function for employee type that the user selected
-        // if they choose Intern, run addIntern function
-        // if they no longer want to add members, you'll need to run the function that actually builds the team (creates the file, etc)
+            // conditional that runs function for employee type that the user selected
+            // if they choose Intern, run addIntern function
+            // if they no longer want to add members, you'll need to run the function that actually builds the team (creates the file, etc)
         })
     }
   
     // function for ADDING A MEMBER /////////////////
-    // a seperate function for each member type
     function addIntern() {
         // use inquirer
         // and prompt to ask questions
         // take the answers, create a new instance of Intern, and add those answers to that new Intern
         // push this new member into you team array
     }
+    // create a seperate function for each member type
   
     // function for BUIDING THE TEAM //////////////////
     function buildTeam() {
