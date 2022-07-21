@@ -1,7 +1,11 @@
-// INDEX.JS //
-
-// require all of your classes/constructors, (Manager, Engineer, Intern)
-// require packages needed (inquirer, path, fs)
+// local modules
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
+// node core and npm packages
+const inquirer = require('inquirer');
+const path = require('path');
+const fs = require('fs');
 
 // set up an empty array for the Team Members
 
