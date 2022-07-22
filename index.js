@@ -5,9 +5,9 @@ const Intern = require('./lib/Intern');
 // node core and npm packages
 const inquirer = require('inquirer');
 const path = require('path');
-const fs = require('fs');
 // template helper code
 const questions = require('./src/questions');
+const generateTeam = require('./src/generate');
 
 // set up an empty array for the Team Members
 let team = [];
@@ -50,43 +50,50 @@ function init() {
             .then(choice => {
                 if (choice.type) {
                     if (choice.type === 'Engineer') {
-                        console.log('Built an engineer!');
+                        addEngineer();
                     } else  {
-                        console.log('Built an Intern!');
+                        addIntern();
                     }
-                    createTeam();
                 } else {
-                    console.log('Your team has been built!');
+                    buildTeam();
                 }
-            })
-  
-        // then, based on their choice, run the function associated with adding that employee type
-        // .then((choice) => {
-        //     // conditional that runs function for employee type that the user selected
-        //     // if they choose Intern, run addIntern function
-        //     // if they no longer want to add members, you'll need to run the function that actually builds the team (creates the file, etc)
-        // })
+            });
     }
   
     // function for ADDING A MEMBER /////////////////
     function addEngineer() {
-        // use inquirer
-        // and prompt to ask questions
-        // take the answers, create a new instance of Intern, and add those answers to that new Intern
-        // push this new member into you team array
+        inquirer
+            .prompt(questions.engineer)
+            .then(res => {
+                const engineer = new Engineer(
+                    res.name,
+                    res.id,
+                    res.email,
+                    res.github
+                );
+                team.push(engineer);
+                createTeam();
+            });
     }
     
     function addIntern() {
-        // use inquirer
-        // and prompt to ask questions
-        // take the answers, create a new instance of Intern, and add those answers to that new Intern
-        // push this new member into you team array
+        inquirer
+            .prompt(questions.intern)
+            .then(res => {
+                const intern = new Intern(
+                    res.name,
+                    res.id,
+                    res.email,
+                    res.school
+                );
+                team.push(intern);
+                createTeam();
+            });
     }
   
     // function for BUIDING THE TEAM //////////////////
     function buildTeam() {
-        // creating the file, adding your team to it
-        // probably call a function, passing in your team members array - send it to another js file 
+        generateTeam(team);
     }
   
     // last thing you'll want to do inside of this initializing function is call your function for creating a manager, so that it's the first question the user is asked
