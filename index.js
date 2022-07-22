@@ -6,8 +6,8 @@ const Intern = require('./lib/Intern');
 const inquirer = require('inquirer');
 const path = require('path');
 // template helper code
-const questions = require('./src/questions');
-const generateTeam = require('./src/generate');
+const questions = require('./helpers/questions');
+const generateHTML= require('./src/html');
 
 // set up an empty array for the Team Members
 let team = [];
@@ -93,7 +93,7 @@ function init() {
   
     // function for BUIDING THE TEAM //////////////////
     function buildTeam() {
-        generateTeam(team);
+        generateHTML(team);
     }
   
     // last thing you'll want to do inside of this initializing function is call your function for creating a manager, so that it's the first question the user is asked
