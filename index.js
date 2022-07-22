@@ -6,28 +6,26 @@ const Intern = require('./lib/Intern');
 const inquirer = require('inquirer');
 const path = require('path');
 const fs = require('fs');
+// template helper code
+const questions = require('./src/questions');
 
 // set up an empty array for the Team Members
+let team = [];
 
-// set up functions for iniitalizing the app, creating a manager, determining which type of employee the user wants to add, adding each member type, and building the team
-
-// function for INITIALIZING ////////////////
 function init() {
-    // first thing you'll probably want to do is add a function for creating a manager, since that's the first thing you have to do
-    // function for CREATING A MANAGER ///////////////
     function createManager() {
-        // use inquirer
-        // and prompt to ask questions
-    
-        // once you finish your questions, you'll probably want to send those answers to a new instance of Manager (one of the classes you'll create and require above)
-        .then((answers) => {
-            const manager = new Manager(
-                //send your answers here
-            );
-            // then you will need to push this new manager to the empty team array you set up above
-            // and call the function for DETERMINING TYPE OF EMPLOYEE - we'll call it createTeam
-            createTeam();
-        })
+        inquirer
+            .prompt(questions.manager)
+            .then(res => {
+                const manager = new Manager(
+                    res.name, 
+                    res.id, 
+                    res.email, 
+                    res.officeNumber
+                );
+                team.push(manager);
+                // createTeam();
+            });
     }
   
     // function for DETERMINING TYPE OF EMPLOYEE //////////////////
@@ -36,11 +34,11 @@ function init() {
         // and prompt to ask questions - such as what type of employee they would like to add
   
         // then, based on their choice, run the function associated with adding that employee type
-        .then((choice) => {
-            // conditional that runs function for employee type that the user selected
-            // if they choose Intern, run addIntern function
-            // if they no longer want to add members, you'll need to run the function that actually builds the team (creates the file, etc)
-        })
+        // .then((choice) => {
+        //     // conditional that runs function for employee type that the user selected
+        //     // if they choose Intern, run addIntern function
+        //     // if they no longer want to add members, you'll need to run the function that actually builds the team (creates the file, etc)
+        // })
     }
   
     // function for ADDING A MEMBER /////////////////
@@ -62,3 +60,5 @@ function init() {
   
     createManager();
 }
+
+init();
