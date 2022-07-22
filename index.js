@@ -24,14 +24,41 @@ function init() {
                     res.officeNumber
                 );
                 team.push(manager);
-                // createTeam();
+                createTeam();
             });
     }
   
     // function for DETERMINING TYPE OF EMPLOYEE //////////////////
     function createTeam() {
-        // use inquirer
-        // and prompt to ask questions - such as what type of employee they would like to add
+        inquirer
+            .prompt([
+                {
+                    name: 'continue',
+                    type: 'confirm',
+                    message: 'Would you like to add a new team member?',
+                },
+                {
+                    name: 'type',
+                    type: 'list',
+                    message: 'Which kind of team member would you like to add?',
+                    choices: ['Engineer', 'Intern'],
+                    when(answers) {
+                        return answers.continue;
+                    }
+                }
+            ])
+            .then(choice => {
+                if (choice.type) {
+                    if (choice.type === 'Engineer') {
+                        console.log('Built an engineer!');
+                    } else  {
+                        console.log('Built an Intern!');
+                    }
+                    createTeam();
+                } else {
+                    console.log('Your team has been built!');
+                }
+            })
   
         // then, based on their choice, run the function associated with adding that employee type
         // .then((choice) => {
@@ -42,13 +69,19 @@ function init() {
     }
   
     // function for ADDING A MEMBER /////////////////
+    function addEngineer() {
+        // use inquirer
+        // and prompt to ask questions
+        // take the answers, create a new instance of Intern, and add those answers to that new Intern
+        // push this new member into you team array
+    }
+    
     function addIntern() {
         // use inquirer
         // and prompt to ask questions
         // take the answers, create a new instance of Intern, and add those answers to that new Intern
         // push this new member into you team array
     }
-    // create a seperate function for each member type
   
     // function for BUIDING THE TEAM //////////////////
     function buildTeam() {
