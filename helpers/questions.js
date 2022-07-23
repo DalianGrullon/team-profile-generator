@@ -1,23 +1,34 @@
+function numVerify(test) {
+    return test.match(/[0-9]/) ? true : 'Must be numerical entry!';
+}
+
+function emailVerify(test) {
+    return test.match('@') ? true : 'Must be a valid email!';
+}
+
 let managerQuestions = [
     {
         name: 'name',
         type: 'input',
-        message: 'Hello and welcome to Team Profile Generator. As the manager of the team, what is your name?'
+        message: 'As the manager of the team, what is your name?'
     },
     {
         name: 'id',
         type: 'input',
-        message: 'Please enter your ID.'
+        message: 'Please enter your ID.',
+        validate: numVerify
     },
     {
         name: 'email',
         type: 'input',
-        message: 'What is your email?'
+        message: 'What is your email?',
+        validate: emailVerify
     },
     {
         name: 'officeNumber',
         type: 'input',
-        message: 'What is your office number?'
+        message: 'What is your office number?',
+        validate: numVerify
     },
 ]
 
@@ -30,12 +41,14 @@ let engineerQuestions = [
     {
         name: 'id',
         type: 'input',
-        message: `What is their ID?`
+        message: `What is their ID?`,
+        validate: numVerify
     },
     {
         name: 'email',
         type: 'input',
-        message: 'What is their email?'
+        message: 'What is their email?',
+        validate: emailVerify
     },
     {
         name: 'github',
@@ -53,12 +66,14 @@ let internQuestions = [
     {
         name: 'id',
         type: 'input',
-        message: `What is their ID?`
+        message: `What is their ID?`,
+        validate: numVerify
     },
     {
         name: 'email',
         type: 'input',
-        message: 'What is their email?'
+        message: 'What is their email?',
+        validate: emailVerify
     },
     {
         name: 'school',

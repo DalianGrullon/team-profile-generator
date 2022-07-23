@@ -9,7 +9,6 @@ const path = require('path');
 const questions = require('./helpers/questions');
 const generateHTML= require('./src/html');
 
-// set up an empty array for the Team Members
 let team = [];
 
 function init() {
@@ -28,7 +27,6 @@ function init() {
             });
     }
   
-    // function for DETERMINING TYPE OF EMPLOYEE //////////////////
     function createTeam() {
         inquirer
             .prompt([
@@ -60,7 +58,6 @@ function init() {
             });
     }
   
-    // function for ADDING A MEMBER /////////////////
     function addEngineer() {
         inquirer
             .prompt(questions.engineer)
@@ -91,13 +88,10 @@ function init() {
             });
     }
   
-    // function for BUIDING THE TEAM //////////////////
     function buildTeam() {
         generateHTML(team);
     }
-  
-    // last thing you'll want to do inside of this initializing function is call your function for creating a manager, so that it's the first question the user is asked
-  
+    
     createManager();
 }
 
