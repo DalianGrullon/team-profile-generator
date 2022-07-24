@@ -1,5 +1,6 @@
 const fs = require('fs');
 
+// generates HTML using template literal and team array from index.js
 function generateHTML(team) {
 let html = `<!DOCTYPE html>
 <html lang="en">
@@ -21,7 +22,7 @@ let html = `<!DOCTYPE html>
     <main>
         <section class="container mx-auto">
             <div class="card-deck">
-                ${team.map(employee => {
+                ${team.map(employee => { // creates an array using the following html for each team member
                     return `<div class="card shadow">
                     <div class="card-header text-white custom-card-header">
                         <h2 class="card-title">${employee.name}</h2>
@@ -32,7 +33,7 @@ let html = `<!DOCTYPE html>
                             <li class="list-group-item">ID: ${employee.id}</li>
                             <li class="list-group-item">Email: <a href="mailto:${employee.email}">${employee.email}</a></li>
                             <li class="list-group-item">
-                                ${
+                                ${ // Conditional that outputs template literals based on the team member being passed in
                                     employee.getRole() === 'Manager'
                                     ? `Office Number: ${employee.officeNumber}`
                                     : employee.getRole() === 'Engineer'
@@ -42,7 +43,7 @@ let html = `<!DOCTYPE html>
                             </li>
                         </ul>
                     </div>
-                </div>`;
+                </div>`; // Joins each index (team member) in the array on a new line with specified spacing for html formatting
                 }).join('\n                    ')}
             </div>
         </section>
