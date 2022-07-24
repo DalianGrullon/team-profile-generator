@@ -1,11 +1,14 @@
+// helper function that verifies user input is a number from 0-9
 function numVerify(test) {
     return test.match(/[0-9]/) ? true : 'Must be numerical entry!';
 }
 
+// helper function that verifies user input contains an @ symbol
 function emailVerify(test) {
     return test.match('@') ? true : 'Must be a valid email!';
 }
 
+// An array of questions to be used for Manager inquirer prompt
 let managerQuestions = [
     {
         name: 'name',
@@ -32,6 +35,7 @@ let managerQuestions = [
     },
 ]
 
+// An array of questions to be used for Engineer inquirer prompt
 let engineerQuestions = [
     {
         name: 'name',
@@ -57,6 +61,7 @@ let engineerQuestions = [
     },
 ]
 
+// An array of questions to be used for Intern inquirer prompt
 let internQuestions = [
     {
         name: 'name',
@@ -83,7 +88,7 @@ let internQuestions = [
 ]
 
 module.exports = {
-    manager: managerQuestions,
-    engineer: engineerQuestions,
-    intern: internQuestions
+    managerQuestions,
+    engineerQuestions,
+    internQuestions
 };

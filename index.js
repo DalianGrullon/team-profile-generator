@@ -9,13 +9,18 @@ const path = require('path');
 const questions = require('./helpers/questions');
 const generateHTML= require('./src/html');
 
+// Declares an empty array which will contain the team member objects upon answering of prompts
 let team = [];
+
+// Destructures questions for manager, engineer, and intern from questions module
+const {managerQuestions, engineerQuestions, internQuestions} = questions;
 
 function init() {
     function createManager() {
         inquirer
-            .prompt(questions.manager)
+            .prompt(managerQuestions)
             .then(res => {
+                // creates a new Manager using its class and the responses from prompt
                 const manager = new Manager(
                     res.name, 
                     res.id, 
@@ -40,12 +45,14 @@ function init() {
                     type: 'list',
                     message: 'Which kind of team member would you like to add?',
                     choices: ['Engineer', 'Intern'],
+                    // only displays if the first prompt is answered with yes
                     when(answers) {
                         return answers.continue;
                     }
                 }
             ])
             .then(choice => {
+                // checks if an engineer or intern as been selected, otherwise, builds team
                 if (choice.type) {
                     if (choice.type === 'Engineer') {
                         addEngineer();
@@ -60,8 +67,9 @@ function init() {
   
     function addEngineer() {
         inquirer
-            .prompt(questions.engineer)
+            .prompt(engineerQuestions)
             .then(res => {
+                // creates a new Engineer using its class and the responses from prompt
                 const engineer = new Engineer(
                     res.name,
                     res.id,
@@ -75,8 +83,9 @@ function init() {
     
     function addIntern() {
         inquirer
-            .prompt(questions.intern)
+            .prompt(internQuestions)
             .then(res => {
+                // creates a new Intern using its class and the responses from prompt
                 const intern = new Intern(
                     res.name,
                     res.id,
