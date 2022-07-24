@@ -75,10 +75,10 @@ a:hover {
 `;
 
     fs.writeFile('./dist/index.html', html, (err) => {
-        err ? console.log(err) : console.log('successfully written');
+        err ? console.log(err) : console.log('Generated HTML');
     });
     fs.writeFile('./dist/style.css', css, (err) => {
-        err ? console.log(err) : console.log('successfully written');
+        err ? console.log(err) : console.log('Generated CSS');
     });
 }
 
